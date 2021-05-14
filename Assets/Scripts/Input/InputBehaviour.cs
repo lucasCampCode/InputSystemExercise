@@ -1,22 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputBehaviour : MonoBehaviour
 {
     [SerializeField]
     private ProjectileSpawnerBehaviour _projectileSpawner;
 
-    // Start is called before the first frame update
-    void Start()
+    public void onFire(InputAction.CallbackContext ctx)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetButtonDown("Fire1"))
+        if (ctx.performed)
             _projectileSpawner.Fire();
     }
 }

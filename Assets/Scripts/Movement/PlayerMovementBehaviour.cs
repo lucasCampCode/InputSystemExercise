@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovementBehaviour : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class PlayerMovementBehaviour : MonoBehaviour
     [SerializeField]
     private float _moveSpeed = 1;
 
+    public void Move(Vector3 direction)
+    {
+        _velocity = direction * _moveSpeed * Time.deltaTime;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +23,6 @@ public class PlayerMovementBehaviour : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-        _velocity = moveDir * _moveSpeed * Time.deltaTime;
-
         _rigidbody.MovePosition(transform.position + _velocity);
     }
 }
